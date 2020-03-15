@@ -86,7 +86,16 @@ export const SelectableText = ({ onSelection, onHighlightPress, value, children,
           )
 
           if (hightlightInRange) {
-            onHighlightPress(hightlightInRange.id)
+            onHighlightPress(hightlightInRange.id);
+            return;
+          }
+
+          const hightlightInclickedRange = mergedHighlights.find(
+            ({ start, end }) => clickedRangeStart <= start && clickedRangeEnd >= end,
+          )
+          if (hightlightInclickedRange) {
+            onHighlightPress(hightlightInclickedRange.id);
+            return;
           }
         }
       : onHighlightPress
